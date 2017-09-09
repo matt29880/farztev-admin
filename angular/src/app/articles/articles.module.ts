@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
-import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { ArticlesComponent } from './articles.component';
+import { ArticleComponent } from './article/article.component';
 import { ArticlesRoutingModule } from './articles-routing.module';
 
 @NgModule({
   imports: [
     ArticlesRoutingModule,
-    ChartsModule
+    CommonModule,
+    FormsModule
   ],
-  declarations: [ ArticlesComponent ]
+  declarations: [ ArticlesComponent, ArticleComponent ]
 })
 export class ArticlesModule { }

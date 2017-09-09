@@ -1,22 +1,29 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
-import { AppComponent } from './app.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule } from 'ngx-bootstrap/tabs';
-import { NAV_DROPDOWN_DIRECTIVES } from './shared/nav-dropdown.directive';
+import {HttpModule} from '@angular/http';
+import {FormsModule} from '@angular/forms';
 
-import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
-import { AsideToggleDirective } from './shared/aside.directive';
-import { BreadcrumbsComponent } from './shared/breadcrumb.component';
+
+import {AppComponent} from './app.component';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {TabsModule} from 'ngx-bootstrap/tabs';
+import {NAV_DROPDOWN_DIRECTIVES} from './shared/nav-dropdown.directive';
+
+import {ChartsModule} from 'ng2-charts/ng2-charts';
+import {SIDEBAR_TOGGLE_DIRECTIVES} from './shared/sidebar.directive';
+import {AsideToggleDirective} from './shared/aside.directive';
+import {BreadcrumbsComponent} from './shared/breadcrumb.component';
 
 // Routing Module
-import { AppRoutingModule } from './app.routing';
+import {AppRoutingModule} from './app.routing';
 
 // Layouts
-import { FullLayoutComponent } from './layouts/full-layout.component';
+import {FullLayoutComponent} from './layouts/full-layout.component';
+
+// Services
+import {ArticlesService} from './articles/articles.service';
 
 @NgModule({
   imports: [
@@ -24,7 +31,9 @@ import { FullLayoutComponent } from './layouts/full-layout.component';
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    HttpModule,
+    FormsModule,
   ],
   declarations: [
     AppComponent,
@@ -34,10 +43,10 @@ import { FullLayoutComponent } from './layouts/full-layout.component';
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective
   ],
-  providers: [{
+  providers: [/*{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }],
-  bootstrap: [ AppComponent ]
+  },*/ArticlesService],
+  bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
