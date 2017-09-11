@@ -24,6 +24,7 @@ import {FullLayoutComponent} from './layouts/full-layout.component';
 
 // Services
 import {ArticlesService} from './articles/articles.service';
+import {CountriesService} from './countries/countries.service';
 
 @NgModule({
   imports: [
@@ -43,10 +44,7 @@ import {ArticlesService} from './articles/articles.service';
     SIDEBAR_TOGGLE_DIRECTIVES,
     AsideToggleDirective
   ],
-  providers: [/*{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  },*/ArticlesService],
+  providers: [ArticlesService,CountriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

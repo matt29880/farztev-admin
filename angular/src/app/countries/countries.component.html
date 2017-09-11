@@ -1,0 +1,31 @@
+<div class="animated fadeIn">
+	<div *ngIf="!singleView">
+		<p>
+			<button type="button" class="btn btn-primary" (click)="singleView=true;countryId=null;">Add</button>
+		</p>
+		<table class="table">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Country</th>
+					<th>Title</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let country of countries">
+					<td><button type="button" class="btn btn-primary"
+							(click)="singleView=true;countryId=country.id;">Modify</button></td>
+					<td><img src="./assets/img/flags/{{country.abbreviation}}.png"
+						width="30" height="30" /></td>
+					<td>{{country.name}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div *ngIf="singleView">
+		<p>
+			<button type="button" class="btn btn-primary" (click)="singleView=false;">Back</button>
+		</p>
+		<farztev-country countryId="{{countryId}}"></farztev-country>
+	</div>
+</div>

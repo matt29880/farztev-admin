@@ -25,6 +25,10 @@ export const routes: Routes = [
         path: 'articles',
         loadChildren: './articles/articles.module#ArticlesModule'
       },
+      {
+        path: 'countries',
+        loadChildren: './countries/countries.module#CountriesModule'
+      },
     ]
   }
 ];
