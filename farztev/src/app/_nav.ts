@@ -27,6 +27,18 @@ export const navItems = [
     name: 'Components'
   },
   {
+    name: 'Editing',
+    url: '/editing',
+    icon: 'icon-puzzle',
+    children: [
+      {
+        name: 'Articles',
+        url: '/editing/articles',
+        icon: 'icon-puzzle'
+      }
+    ]
+  },
+  {
     name: 'Base',
     url: '/base',
     icon: 'icon-puzzle',
