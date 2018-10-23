@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
-import { ListArticle } from './listarticle';
-import { LISTARTICLE } from './mock-listarticle';
+import {Component, OnInit} from '@angular/core';
+import {ListArticle} from './listarticle';
+import {ArticlesService} from './articles.service';
 
 @Component({
   templateUrl: 'articles.component.html'
 })
-export class ArticlesComponent {
+export class ArticlesComponent implements OnInit {
+  constructor(public articlesService: ArticlesService) {
+  }
 
-  constructor() { }
+  ngOnInit() {
+    this.getArticles();
+  }
   
-  listarticle = LISTARTICLE;
+  listarticle: ListArticle[];
+
+  getArticles(): void {
+     this.articlesService.getArticles().subscribe(listarticle => this.listarticle = listarticle);
+  }
 
 }
