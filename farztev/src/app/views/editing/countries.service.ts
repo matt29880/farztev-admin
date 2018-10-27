@@ -3,8 +3,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {environment} from '../../../environments/environment';
-import {ListArticle} from './listarticle';
-import {Article} from './article';
+import {ListCountry} from './listcountry';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 
@@ -15,31 +14,18 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class ArticlesService {
-  private articlesUrl = environment.backendBaseUrl + '/api/article';
+export class CountriesService {
+  private countriesUrl = environment.backendBaseUrl + '/api/country';
 
   constructor(private http: HttpClient) {}
 
-  getArticles(): Observable<ListArticle[]> {
-    return this.http.get<ListArticle[]>(this.articlesUrl).pipe(
-      tap(articles => this.log('fetched articles')),
-      catchError(this.handleError('getArticles', []))
+  getCountries(): Observable<ListCountry[]> {
+    return this.http.get<ListCountry[]>(this.countriesUrl).pipe(
+      tap(countries => this.log('fetched countries')),
+      catchError(this.handleError('getCountries', []))
     );
   }
-
-  getArticle(id: number): Observable<Article> {
-    return this.http.get<Article>(this.articlesUrl + "/" + id).pipe(
-      tap(article => this.log('fetched article'))
-    );
-  }
-
-  updateArticle(id: number, article: Article): Observable<void> {
-    console.log("Try to update article - id = "+id+" - article = "+article);
-    return this.http.put<void>(this.articlesUrl + "/" + id, article, httpOptions).pipe(
-      tap(article => this.log('updated article'))
-    );
-  }
-
+  
   /**
  * Handle Http operation that failed.
  * Let the app continue.
