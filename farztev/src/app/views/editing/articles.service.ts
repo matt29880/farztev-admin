@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import { environment } from '../../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {ListArticle} from './listarticle';
+import {Article} from './article';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 
@@ -15,7 +16,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class ArticlesService {
-  private articlesUrl = environment.backendBaseUrl+'/api/article';
+  private articlesUrl = environment.backendBaseUrl + '/api/article';
 
   constructor(private http: HttpClient) {}
 
@@ -23,6 +24,12 @@ export class ArticlesService {
     return this.http.get<ListArticle[]>(this.articlesUrl).pipe(
       tap(articles => this.log('fetched articles')),
       catchError(this.handleError('getArticles', []))
+    );
+  }
+
+  getArticle(id: number): Observable<Article> {
+    return this.http.get<Article>(this.articlesUrl + "/" + id).pipe(
+      tap(article => this.log('fetched article'))
     );
   }
 
