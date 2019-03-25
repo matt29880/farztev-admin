@@ -9,7 +9,7 @@
 	</thead>
 	<tbody>
 		<tr *ngFor="let article of listarticle">
-			<td><a href="#/editing/countries/{{article.countryId}}">{{article.country}}</a></td>
+			<td><a href="#/editing/countries/{{article.countryId}}">{{article.countryName}}</a></td>
 			<td><a href="#/editing/articles/{{article.id}}">{{article.name}}</a></td>
 			<td>{{article.created}}</td>
 			<td>{{article.updated}}</td>
@@ -17,3 +17,4 @@
 		</tr>
 	</tbody>
 </table>
+<a routerLink="/editing/articles/new"><button class="btn btn-success pull-right" >Write a new article</button></a>

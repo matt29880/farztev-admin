@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ArticlesComponent } from './articles.component';
+import { ArticleComponent } from './article/article.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,20 @@ const routes: Routes = [
         component: ArticlesComponent,
         data: {
           title: 'Articles'
+        }
+      },
+      {
+        path: 'articles/:id',
+        component: ArticleComponent,
+        data: {
+          title: 'Article'
+        }
+      },
+      {
+        path: 'articles/new',
+        component: ArticleComponent,
+        data: {
+          title: 'Article'
         }
       }
     ]

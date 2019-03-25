@@ -65,7 +65,7 @@
     "@types/jasmine": "^2.8.8",
     "@types/jasminewd2": "^2.0.3",
     "@types/node": "^10.9.4",
-    "angular-ide": "^0.9.50",
+    "angular-ide": "^0.9.52",
     "codelyzer": "^4.4.4",
     "jasmine-core": "^3.2.1",
     "jasmine-spec-reporter": "^4.2.1",
