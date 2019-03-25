@@ -33,10 +33,26 @@ export class ArticlesService {
     );
   }
 
+  insertArticle(article: Article): Observable<Article> {
+    console.log("Try to insert article");
+    console.log(article);
+    return this.http.post<Article>(this.articlesUrl, article, httpOptions).pipe(
+      tap(article => this.log('inserted article'))
+    );
+  }
+
   updateArticle(id: number, article: Article): Observable<void> {
-    console.log("Try to update article - id = "+id+" - article = "+article);
+    console.log("Try to update article - id = "+id);
+    console.log(article);
     return this.http.put<void>(this.articlesUrl + "/" + id, article, httpOptions).pipe(
       tap(article => this.log('updated article'))
+    );
+  }
+
+  deleteArticle(id: number): Observable<void> {
+    console.log("Try to delete the article - id = "+id);
+    return this.http.delete<void>(this.articlesUrl + "/" + id, httpOptions).pipe(
+      tap(article => this.log('deleted article'))
     );
   }
 

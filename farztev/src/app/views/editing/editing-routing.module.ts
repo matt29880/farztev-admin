@@ -24,6 +24,13 @@ const routes: Routes = [
         data: {
           title: 'Article'
         }
+      },
+      {
+        path: 'articles/new',
+        component: ArticleComponent,
+        data: {
+          title: 'Article'
+        }
       }
     ]
   }
