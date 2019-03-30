@@ -12,5 +12,10 @@ export const navItems = [
     name: 'Articles',
     url: '/editing/articles',
     icon: 'icon-puzzle'
+  },
+  {
+    name: 'Countries',
+    url: '/editing/countries',
+    icon: 'icon-puzzle'
   }
 ];

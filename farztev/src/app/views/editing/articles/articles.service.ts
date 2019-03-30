@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 import {ListArticle} from './listarticle';
-import {Article} from './article';
+import {Article} from '../article/article';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 
