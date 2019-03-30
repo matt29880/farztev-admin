@@ -1,4 +1,4 @@
-import {ArticleDescription} from './article/articleDescription';
+import {ArticleDescription} from './articleDescription';
 
 export class Article {
   id: number;

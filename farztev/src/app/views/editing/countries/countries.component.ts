@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {ListArticle} from './listarticle';
+import {ListCountry} from './listcountry';
 import {CountriesService} from './countries.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
@@ -19,13 +19,13 @@ export class CountriesComponent implements OnInit, OnDestroy {
     this.getCountries();
   }
 
-  listarticle: ListArticle[];
+  listcountry: ListCountry[];
 
   getCountries(): void {
-    this.countriesService.getCountries().subscribe(listarticle => this.listarticle = listarticle);
+    this.countriesService.getCountries().subscribe(listcountry => { this.listcountry = listcountry; console.log(this.listcountry);});
   }
   ngOnDestroy(): void {
-    this.listarticle = null;
+    this.listcountry = null;
   }
 
 }

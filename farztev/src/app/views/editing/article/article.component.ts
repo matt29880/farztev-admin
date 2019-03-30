@@ -1,8 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { ArticlesService } from '../articles.service';
-import { CountriesService } from '../countries.service';
-import { Article } from '../article';
-import { ListCountry } from '../listcountry';
+import { ArticlesService } from '../articles/articles.service';
+import { CountriesService } from '../countries/countries.service';
+import { Article } from './article';
+import { ListCountry } from '../countries/listcountry';
 import { ArticleDescription } from './articleDescription';
 import { ArticleParagraph } from './articleParagraph';
 import { ArticleTitle } from './articleTitle';
