@@ -1,0 +1,13 @@
+<h2>Countries</h2>
+<table class="countrylist" border="1">
+	<thead>
+		<th>Name</th>
+	</thead>
+	<tbody>
+		<tr *ngFor="let country of countrylist">
+			<td><a href="#/editing/countries/{{country.countryId}}">{{country.countryName}}</a></td>
+			<td>{{country.name}}</td>
+		</tr>
+	</tbody>
+</table>
+<a routerLink="/editing/countries/new"><button class="btn btn-success pull-right" >Add new country</button></a>
