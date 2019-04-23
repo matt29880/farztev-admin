@@ -1,0 +1,19 @@
+<h3>Files</h3>
+<p>{{currentPath}}</p>
+<ul>
+	<li *ngIf="previousPaths.length > 0">
+		<button (click)="goBack()">
+				..
+		</button>
+	</li>
+	<li *ngFor="let file of files">
+		<button (click)="openDirectory(file.path)" *ngIf="file.directory">
+			{{file.name}}
+		</button>
+		<button (click)="openFile(file.path)" *ngIf="!file.directory">
+			{{file.name}}
+		</button>
+	</li>
+</ul>
+<p>{{currentImagePath}}</p>
+<img src="http://localhost:8080/api/image{{currentImagePath}}" width="300"/>

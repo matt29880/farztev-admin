@@ -9,6 +9,9 @@ import { ArticleComponent } from './article/article.component';
 import { CountriesComponent } from './countries/countries.component';
 import { CountryComponent } from './country/country.component';
 
+import { AlbumsComponent } from './albums/albums.component';
+import { ExplorerComponent } from './explorer/explorer.component';
+
 
 // Components Routing
 import { EditingRoutingModule } from './editing-routing.module';
@@ -23,7 +26,9 @@ import { EditingRoutingModule } from './editing-routing.module';
     ArticlesComponent,
     ArticleComponent,
     CountriesComponent,
-    CountryComponent
+    CountryComponent,
+    AlbumsComponent,
+    ExplorerComponent
   ]
 })
 export class EditingModule { }

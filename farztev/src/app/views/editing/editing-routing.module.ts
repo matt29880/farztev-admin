@@ -5,6 +5,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
 import { CountriesComponent } from './countries/countries.component';
 import { CountryComponent } from './country/country.component';
+import { AlbumsComponent } from './albums/albums.component';
 
 const routes: Routes = [
   {
@@ -55,8 +56,15 @@ const routes: Routes = [
           title: 'Country'
         }
       },
+      {
+        path: 'albums',
+        component: AlbumsComponent,
+        data: {
+          title: 'Albums'
+        }
+      }
     ]
-  }
+  } 
 ];
 
 @NgModule({
