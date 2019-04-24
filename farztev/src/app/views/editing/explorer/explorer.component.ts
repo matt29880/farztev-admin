@@ -18,13 +18,15 @@ export class ExplorerComponent implements OnInit {
   }
 
   files: FileDetailDto[];
-  currentImagePath: string;
   currentPath: string;
   previousPaths: string[];
   @ViewChild('f') form: NgForm;
 
+  @Output() public selectedFiles = new EventEmitter();
+
+  // private listOfSelectedFiles : FileDetailDto[] = [];
+
   ngOnInit() {
-    this.currentImagePath = "/no-image.jpg";
     this.currentPath = "/";
     this.previousPaths = [];
     this.go("/");
@@ -42,17 +44,49 @@ export class ExplorerComponent implements OnInit {
     this.previousPaths.push(this.currentPath);
     this.go(folderPath);
   }
-  openFile(path): void {
-    this.currentImagePath = path;
-  }
+
   go(folderPath): void {
     this.getFiles(folderPath).subscribe(files => {
       this.files = files;
       this.currentPath = folderPath;
     });
   }
+
   goBack(): void {
     console.log(this.previousPaths);
     this.go(this.previousPaths.pop());
   }
+
+  selectImage(file):void {
+    /*if(this.isSelected(file)) {
+      alert("Image already added!");
+      return;
+    }*/
+    //this.listOfSelectedFiles.push(file);
+    this.selectedFiles.emit(file.path);
+  }
+
+  unselectImage(file):void {
+    // Remove item by filtering
+    /*this.listOfSelectedFiles = this.listOfSelectedFiles.filter(function(f){
+      return file.path != f.path;
+    });*/
+  }
+
+  directories() : FileDetailDto[] {
+    return this.files.filter(f => f.directory);
+  }
+
+  photos() : FileDetailDto[] {
+    return this.files.filter(f => !f.directory);
+  }
+
+  /*isSelected(file) : boolean {
+    return this.listOfSelectedFiles.filter(function (f) {return f.path == file.path}).length == 1;
+  }*/
+
+  /*send() : void {
+    this.selectedFiles.emit(this.listOfSelectedFiles);
+  }*/
+
 }

@@ -1,19 +1,37 @@
-<h3>Files</h3>
-<p>{{currentPath}}</p>
+<h2>File explorer</h2>
+<div class="row text-center text-lg-left">
+	<div class="col-3">
+		<h3>Files</h3>
+		<p>{{currentPath}}</p>
+		<ul>
+			<li *ngIf="previousPaths.length > 0">
+				<button (click)="goBack()">
+						..
+				</button>
+			</li>
+			<li *ngFor="let file of directories()">
+				<button (click)="openDirectory(file.path)">
+					{{file.name}}
+				</button>
+			</li>
+		</ul>
+	</div>
+	<div class="col-9">
+		<div class="row text-center text-lg-left">
+			<div class="col-3" *ngFor="let file of photos()">
+				<img src="http://localhost:8080/api/image{{file.path}}" width="250" (click)="selectImage(file);" 
+					/>
+					<!--[ngClass]="isSelected(file) ? 'selected' : ''"-->
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--
 <ul>
-	<li *ngIf="previousPaths.length > 0">
-		<button (click)="goBack()">
-				..
-		</button>
-	</li>
-	<li *ngFor="let file of files">
-		<button (click)="openDirectory(file.path)" *ngIf="file.directory">
-			{{file.name}}
-		</button>
-		<button (click)="openFile(file.path)" *ngIf="!file.directory">
-			{{file.name}}
-		</button>
+	<li *ngFor="let file of listOfSelectedFiles">
+		<span>{{file.name}}</span>
+		<img src="http://localhost:8080/api/image{{file.path}}" width="100" (click)="unselectImage(file)"/>
 	</li>
 </ul>
-<p>{{currentImagePath}}</p>
-<img src="http://localhost:8080/api/image{{currentImagePath}}" width="300"/>
+-->
