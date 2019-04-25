@@ -1,12 +1,15 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, TemplateRef} from '@angular/core';
 import {ExplorerComponent} from '../explorer/explorer.component';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
-  templateUrl: 'albums.component.html'
+  templateUrl: 'albums.component.html',
+  styleUrls: ['albums.component.css']
 })
 export class AlbumsComponent implements OnInit{
-  constructor() {
+  modalRef: BsModalRef;
+  constructor(private modalService: BsModalService) {
     /*
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -16,13 +19,17 @@ export class AlbumsComponent implements OnInit{
   }
 
   selections: string[] = [];
+  alertState : string = "hide";
 
   ngOnInit() {
   }
 
   addSelection(filePath) : void {
     if(this.selectionExists(filePath)) {
-      alert("This photo is already contained in the album");
+      this.alertState = "show";
+      setTimeout(() => {
+        this.alertState = "hide";
+      }, 2000);
       return;
     }
     this.selections.push(filePath);
@@ -37,6 +44,9 @@ export class AlbumsComponent implements OnInit{
     this.selections = this.selections.filter(function(selection){
       return filePath != selection;
     });
+  }
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-xl'});
   }
 
 }
