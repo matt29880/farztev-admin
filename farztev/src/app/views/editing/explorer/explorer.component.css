@@ -17,6 +17,10 @@ input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
 	cursor: pointer;
 }
 
+.parent-folder {
+	font-size: 14pt;
+}
+
 .files {
 	background-color: white;
 	padding: 2%;

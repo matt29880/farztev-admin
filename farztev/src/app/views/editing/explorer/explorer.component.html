@@ -4,8 +4,8 @@
 	<div class="col-3 folders text-center" style="height: 100%;width:100%;overflow-x:auto;">
 		<h3>Files</h3>
 		<p>Path : {{currentPath}}</p>
-		<p *ngIf="previousPaths.length > 0" class="folder">
-			<a (click)="goBack()">..</a>
+		<p *ngIf="previousPaths.length > 0" class="folder parent-folder">
+			<a (click)="goBack()">&larr; parent folder</a>
 		</p>
 		<p *ngFor="let file of directories()" class="folder">
 			<a (click)="openDirectory(file.path)"><img src="/assets/img/folder.png" width="28"/> {{file.name}}</a
