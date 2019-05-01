@@ -1,24 +1,20 @@
-<h1>Albums</h1>
-<!--<farztev-explorer (selectedFiles)="addSelection($event)"></farztev-explorer>-->
-<button type="button" class="btn btn-primary" (click)="openModal(template)">Add photos</button>
-<div class="album row text-center text-lg-left">
-  <div class="col-lg-3 col-md-4 col-6" *ngFor="let selection of selections">
-        <img src="http://localhost:8080/api/image{{selection}}" (click)="unselect(selection)" class="rounded img-thumbnail cursor-pointer" />
-    </div>
-</div>
-
- 
-<ng-template #template>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
-    <div class="alert alert-danger p-1 {{alertState}}" role="alert">
-        This photo has been already added to the album!
-    </div>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-      <farztev-explorer (selectedFiles)="addSelection($event)"></farztev-explorer>
-  </div>
-</ng-template>
+<h2>Albums</h2>
+<table class="albumlist" border="1">
+	<thead>
+		<th>Country</th>
+		<th>Name</th>
+		<th>Created</th>
+		<th>Updated</th>
+		<th>Online</th>
+	</thead>
+	<tbody>
+		<tr *ngFor="let album of albums">
+			<td><a href="#/editing/countries/{{album.countryId}}">{{album.countryName}}</a></td>
+			<td><a href="#/editing/albums/{{album.id}}">{{album.name}}</a></td>
+			<td>{{album.created}}</td>
+			<td>{{album.updated}}</td>
+			<td>{{album.online}}</td>
+		</tr>
+	</tbody>
+</table>
+<a routerLink="/editing/albums/new"><button class="btn btn-success pull-right" >Create a new album</button></a>

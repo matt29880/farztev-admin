@@ -5,6 +5,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
+import {ListAlbum} from './listalbum';
+import {Album} from '../album/album';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -17,13 +19,42 @@ export class AlbumsService {
   private albumsUrl = environment.backendBaseUrl + '/api/album';
 
   constructor(private http: HttpClient) {}
-/*
-  getArticles(): Observable<ListArticle[]> {
-    return this.http.get<ListArticle[]>(this.articlesUrl).pipe(
-      tap(articles => this.log('fetched articles')),
-      catchError(this.handleError('getArticles', []))
+
+  getAlbums(): Observable<ListAlbum[]> {
+    return this.http.get<ListAlbum[]>(this.albumsUrl).pipe(
+      tap(albums => this.log('fetched albums')),
+      catchError(this.handleError('getAlbums', []))
     );
-  }*/
+  }
+
+  getAlbum(id: number): Observable<Album> {
+    return this.http.get<Album>(this.albumsUrl + "/" + id).pipe(
+      tap(album => this.log('fetched album'))
+    );
+  }
+
+  insertAlbum(album: Album): Observable<Album> {
+    console.log("Try to insert album");
+    console.log(album);
+    return this.http.post<Album>(this.albumsUrl, album, httpOptions).pipe(
+      tap(album => this.log('inserted album'))
+    );
+  }
+
+  updateAlbum(id: number, album: Album): Observable<void> {
+    console.log("Try to update album - id = "+id);
+    console.log(album);
+    return this.http.put<void>(this.albumsUrl + "/" + id, album, httpOptions).pipe(
+      tap(album => this.log('updated album'))
+    );
+  }
+
+  deleteAlbum(id: number): Observable<void> {
+    console.log("Try to delete the album - id = "+id);
+    return this.http.delete<void>(this.albumsUrl + "/" + id, httpOptions).pipe(
+      tap(album => this.log('deleted album'))
+    );
+  }
 
   /**
  * Handle Http operation that failed.
@@ -48,5 +79,4 @@ export class AlbumsService {
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
   }
-
 }

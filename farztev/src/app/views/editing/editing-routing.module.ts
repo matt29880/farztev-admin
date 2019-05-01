@@ -6,6 +6,7 @@ import { ArticleComponent } from './article/article.component';
 import { CountriesComponent } from './countries/countries.component';
 import { CountryComponent } from './country/country.component';
 import { AlbumsComponent } from './albums/albums.component';
+import { AlbumComponent } from './album/album.component';
 
 const routes: Routes = [
   {
@@ -61,6 +62,20 @@ const routes: Routes = [
         component: AlbumsComponent,
         data: {
           title: 'Albums'
+        }
+      },
+      {
+        path: 'albums/:id',
+        component: AlbumComponent,
+        data: {
+          title: 'Album'
+        }
+      },
+      {
+        path: 'albums/new',
+        component: AlbumComponent,
+        data: {
+          title: 'Album'
         }
       }
     ]

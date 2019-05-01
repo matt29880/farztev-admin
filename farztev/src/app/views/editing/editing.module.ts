@@ -10,6 +10,8 @@ import { CountriesComponent } from './countries/countries.component';
 import { CountryComponent } from './country/country.component';
 
 import { AlbumsComponent } from './albums/albums.component';
+import { AlbumComponent } from './album/album.component';
+
 import { ExplorerComponent } from './explorer/explorer.component';
 
 
@@ -28,6 +30,7 @@ import { EditingRoutingModule } from './editing-routing.module';
     CountriesComponent,
     CountryComponent,
     AlbumsComponent,
+    AlbumComponent,
     ExplorerComponent
   ]
 })

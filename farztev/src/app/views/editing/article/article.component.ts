@@ -17,7 +17,10 @@ import { Router } from "@angular/router";
 })
 export class ArticleComponent implements OnInit {
 
-  constructor(public articlesService: ArticlesService, public countriesService: CountriesService, private route: ActivatedRoute, private router: Router) {
+  constructor(public articlesService: ArticlesService, 
+    public countriesService: CountriesService, 
+    private route: ActivatedRoute, 
+    private router: Router) {
   }
   dataAvailable = false;
   articleId: number;
