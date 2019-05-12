@@ -4,8 +4,10 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { AlbumsService } from '../albums/albums.service';
 import { CountriesService } from '../countries/countries.service';
+import { MediaService } from '../media/media.service';
 import { ListCountry } from '../countries/listcountry';
 import { Album } from './album';
+import { Media } from '../media/media';
 import { ListAlbum } from '../albums/listalbum';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
@@ -18,6 +20,7 @@ export class AlbumComponent implements OnInit{
   modalRef: BsModalRef;
   constructor(public albumsService: AlbumsService, 
     public countriesService: CountriesService, 
+    public mediaService: MediaService, 
     private route: ActivatedRoute, 
     private router: Router,
     private modalService: BsModalService) {
@@ -32,6 +35,7 @@ export class AlbumComponent implements OnInit{
   dataAvailable = false;
   albumId: number;
   album: Album;
+  medias: Media[];
   countries: ListCountry[];
 
   @ViewChild('f') form: NgForm;
@@ -50,7 +54,13 @@ export class AlbumComponent implements OnInit{
       // The JavaScript (+) operator converts the string to a number
       this.albumId = +this.route.snapshot.paramMap.get('id');
       if (this.albumId != null) {
-        this.getAlbum().subscribe(album => { this.album = album; this.dataAvailable = true; });
+        this.getAlbum().subscribe(album => { 
+          this.album = album; 
+          this.getMedias(album.id).subscribe(medias => {
+            this.medias = medias;
+            this.dataAvailable = true;
+          });
+        });
       }
     });
   }
@@ -62,6 +72,9 @@ export class AlbumComponent implements OnInit{
 
   getCountries(): Observable<ListCountry[]> {
     return this.countriesService.getCountries();
+  }
+  getMedias(albumId: number): Observable<Media[]> {
+    return this.mediaService.getMedias(albumId);
   }
   getAlbum(): Observable<Album> {
     return this.albumsService.getAlbum(this.albumId);
