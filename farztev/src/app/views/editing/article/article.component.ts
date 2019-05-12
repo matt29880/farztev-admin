@@ -10,6 +10,9 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Router } from "@angular/router";
+import { ArticleAlbum } from './articleAlbum';
+import { AlbumsService } from '../albums/albums.service';
+import { ListAlbum } from '../albums/listalbum';
 
 @Component({
   templateUrl: 'article.component.html',
@@ -19,6 +22,7 @@ export class ArticleComponent implements OnInit {
 
   constructor(public articlesService: ArticlesService, 
     public countriesService: CountriesService, 
+    public albumsService: AlbumsService, 
     private route: ActivatedRoute, 
     private router: Router) {
   }
@@ -28,12 +32,15 @@ export class ArticleComponent implements OnInit {
   descriptionItems: ArticleDescription[];
   countries: ListCountry[];
   @ViewChild('f') form: NgForm;
+  albums: ListAlbum[] = [];
 
   ngOnInit() {
     this.initializeEmptyArticle();
     this.getCountries().subscribe(countries => {
       this.countries = countries;
-
+      this.getAlbums().subscribe(albums => {
+        this.albums = albums;
+      });
       if (this.route.snapshot.paramMap.get('id') == 'new') {
         return;
       }
@@ -57,6 +64,10 @@ export class ArticleComponent implements OnInit {
   getArticle(): Observable<Article> {
     return this.articlesService.getArticle(this.articleId);
   }
+  getAlbums() : Observable<ListAlbum[]> {
+    return this.albumsService.getAlbums();
+  }
+
   deleteArticle(): void {
     if (confirm("Are you sure to want to remove the article '" + this.article.name + "' ?")) {
       this.articlesService.deleteArticle(this.articleId).subscribe(response => console.log("Article deleted !"));
@@ -79,11 +90,20 @@ export class ArticleComponent implements OnInit {
     let descriptionItem: ArticleDescription;
     if (type == 'title') {
       descriptionItem = new ArticleTitle();
+      console.log(descriptionItem);
+      this.descriptionItems.push(descriptionItem);
     } else if (type == 'paragraph') {
       descriptionItem = new ArticleParagraph();
+      console.log(descriptionItem);
+      this.descriptionItems.push(descriptionItem);
+    } else if (type == 'album') {
+      this.albumsService.getAlbums().subscribe(albums => {
+        this.albums = albums;
+        descriptionItem = new ArticleAlbum();
+        console.log(descriptionItem);
+        this.descriptionItems.push(descriptionItem);
+      });
     }
-    console.log(descriptionItem);
-    this.descriptionItems.push(descriptionItem);
   }
 
   removeDescriptionItem(index: number) {

@@ -6,5 +6,5 @@ export class Media {
   created: string;
   updated: string;
   online: boolean;
-  albumId: boolean;
+  albumId: number;
 }

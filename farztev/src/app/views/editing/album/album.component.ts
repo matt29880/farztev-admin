@@ -8,6 +8,7 @@ import { MediaService } from '../media/media.service';
 import { ListCountry } from '../countries/listcountry';
 import { Album } from './album';
 import { Media } from '../media/media';
+import { MediaType } from '../media/mediatype';
 import { ListAlbum } from '../albums/listalbum';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
@@ -40,7 +41,6 @@ export class AlbumComponent implements OnInit{
 
   @ViewChild('f') form: NgForm;
 
-  selections: string[] = [];
   alertState : string = "hide";
 
   ngOnInit() {
@@ -97,7 +97,7 @@ export class AlbumComponent implements OnInit{
     }
   }
 
-  addSelection(filePath) : void {
+  addSelection(filePath : string) : void {
     if(this.selectionExists(filePath)) {
       this.alertState = "show";
       setTimeout(() => {
@@ -105,17 +105,25 @@ export class AlbumComponent implements OnInit{
       }, 2000);
       return;
     }
-    this.selections.push(filePath);
+    let media = new Media();
+    media.name = "";
+    media.type = MediaType.PHOTO.toString();
+    media.online = true;
+    media.url = filePath;
+    media.albumId = this.albumId;
+    this.mediaService.insertMedia(this.albumId, media).subscribe(media => this.medias.push(media));
   }
 
   selectionExists(filePath) : boolean {
-    return this.selections.filter(function (s) {return s == filePath}).length == 1;
+    return this.medias.filter(function (m) {return m.url == filePath}).length == 1;
   }
 
-  unselect(filePath):void {
+  unselect(id : number):void {
     // Remove item by filtering
-    this.selections = this.selections.filter(function(selection){
-      return filePath != selection;
+    this.mediaService.deleteMedia(this.albumId, id).subscribe(() => {
+      this.medias = this.medias.filter(function(media){
+        return id != media.id;
+      });
     });
   }
   openModal(template: TemplateRef<any>) {
