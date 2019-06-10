@@ -107,7 +107,8 @@ export class AlbumComponent implements OnInit{
     }
     let media = new Media();
     media.name = "";
-    media.type = MediaType.PHOTO;
+    let mediaTypeId = MediaType[MediaType.PHOTO];
+    media.type = mediaTypeId;
     media.online = true;
     media.url = filePath;
     media.albumId = this.albumId;

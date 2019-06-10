@@ -21,7 +21,8 @@ export class MediaService {
   constructor(private http: HttpClient) {}
 
   getMedias(albumId: number, mediaType : MediaType): Observable<Media[]> {
-    return this.http.get<Media[]>(this.albumsUrl+ albumId+ "/media/type/" + mediaType).pipe(
+    let mediaTypeId = MediaType[mediaType];
+    return this.http.get<Media[]>(this.albumsUrl+ albumId+ "/media/type/" + mediaTypeId).pipe(
       tap(medias => this.log('fetched medias of album ' + albumId)),
       catchError(this.handleError('getMedias', []))
     );

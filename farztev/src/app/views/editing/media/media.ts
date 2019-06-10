@@ -3,7 +3,7 @@ import { MediaType } from "./mediatype";
 export class Media {
   id: number;
   name: string;
-  type: MediaType;
+  type: string;
   url: string;
   created: string;
   updated: string;
