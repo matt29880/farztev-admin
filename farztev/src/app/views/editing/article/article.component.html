@@ -35,7 +35,7 @@
 						[attr.data-index]="index">{{descriptionItems[index].content}}}</textarea>
 					<select *ngIf="articleDescription.type == 'album'"
 						name="descriptionAlbum_{{index}}" class="form-control"
-						[attr.data-index]="index" [(ngModel)]="descriptionItems[index].album">
+						[attr.data-index]="index" [(ngModel)]="descriptionItems[index].albumId">
 						<option *ngFor="let album of albums" [ngValue]="album.id">{{album.name}}</option>
 					</select>
 				</div>
