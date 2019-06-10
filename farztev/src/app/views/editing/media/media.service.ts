@@ -6,6 +6,7 @@ import {environment} from '../../../../environments/environment';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {Media} from './media';
+import { MediaType } from './mediatype';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -19,8 +20,8 @@ export class MediaService {
 
   constructor(private http: HttpClient) {}
 
-  getMedias(albumId: number): Observable<Media[]> {
-    return this.http.get<Media[]>(this.albumsUrl+ albumId+ "/media").pipe(
+  getMedias(albumId: number, mediaType : MediaType): Observable<Media[]> {
+    return this.http.get<Media[]>(this.albumsUrl+ albumId+ "/media/type/" + mediaType).pipe(
       tap(medias => this.log('fetched medias of album ' + albumId)),
       catchError(this.handleError('getMedias', []))
     );
@@ -29,7 +30,7 @@ export class MediaService {
   insertMedia(albumId: number, media: Media): Observable<Media> {
     console.log("Try to insert a media");
     console.log(media);
-    return this.http.post<Media>(this.albumsUrl+ albumId+ "/media", media, httpOptions).pipe(
+    return this.http.post<Media>(this.albumsUrl + albumId+ "/media", media, httpOptions).pipe(
       tap(media => this.log('inserted media'))
     );
   }

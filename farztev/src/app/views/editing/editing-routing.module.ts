@@ -7,6 +7,8 @@ import { CountriesComponent } from './countries/countries.component';
 import { CountryComponent } from './country/country.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { AlbumComponent } from './album/album.component';
+import { AlbumTypesComponent } from './albumtypes/albumtypes.component';
+import { AlbumTypeComponent } from './albumtype/albumtype.component';
 
 const routes: Routes = [
   {
@@ -76,6 +78,27 @@ const routes: Routes = [
         component: AlbumComponent,
         data: {
           title: 'Album'
+        }
+      },
+      {
+        path: 'albumtypes',
+        component: AlbumTypesComponent,
+        data: {
+          title: 'Album Types'
+        }
+      },
+      {
+        path: 'albumtypes/:id',
+        component: AlbumTypeComponent,
+        data: {
+          title: 'Album Type'
+        }
+      },
+      {
+        path: 'albumtypes/new',
+        component: AlbumTypeComponent,
+        data: {
+          title: 'Album Type'
         }
       }
     ]

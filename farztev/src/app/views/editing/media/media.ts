@@ -1,7 +1,9 @@
+import { MediaType } from "./mediatype";
+
 export class Media {
   id: number;
   name: string;
-  type: string;
+  type: MediaType;
   url: string;
   created: string;
   updated: string;

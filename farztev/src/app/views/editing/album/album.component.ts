@@ -74,7 +74,7 @@ export class AlbumComponent implements OnInit{
     return this.countriesService.getCountries();
   }
   getMedias(albumId: number): Observable<Media[]> {
-    return this.mediaService.getMedias(albumId);
+    return this.mediaService.getMedias(albumId, MediaType.PHOTO);
   }
   getAlbum(): Observable<Album> {
     return this.albumsService.getAlbum(this.albumId);
@@ -107,7 +107,7 @@ export class AlbumComponent implements OnInit{
     }
     let media = new Media();
     media.name = "";
-    media.type = MediaType.PHOTO.toString();
+    media.type = MediaType.PHOTO;
     media.online = true;
     media.url = filePath;
     media.albumId = this.albumId;

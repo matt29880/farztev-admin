@@ -14,6 +14,9 @@ import { AlbumComponent } from './album/album.component';
 
 import { ExplorerComponent } from './explorer/explorer.component';
 
+import { AlbumTypesComponent } from './albumtypes/albumtypes.component';
+import { AlbumTypeComponent } from './albumtype/albumtype.component';
+
 
 // Components Routing
 import { EditingRoutingModule } from './editing-routing.module';
@@ -31,6 +34,8 @@ import { EditingRoutingModule } from './editing-routing.module';
     CountryComponent,
     AlbumsComponent,
     AlbumComponent,
+    AlbumTypesComponent,
+    AlbumTypeComponent,
     ExplorerComponent
   ]
 })
