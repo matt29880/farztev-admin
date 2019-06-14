@@ -51,6 +51,8 @@
 					</p>
 				</div>
 				<div class="col-sm-2">
+					<button class="btn btn-secondary" type="button" (click)="moveDescriptionUp(index)" *ngIf="index != 0">&uarr;</button>
+					<button class="btn btn-secondary" type="button" (click)="moveDescriptionDown(index)" *ngIf="(index+1) < descriptionItems.length ">&darr;</button>
 					<button class="btn btn-secondary" type="button" (click)="removeDescriptionItem(index)">X</button>
 				</div>
 			</div>

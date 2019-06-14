@@ -154,4 +154,24 @@ export class ArticleComponent implements OnInit {
     this.modalType = modalType;
     this.modalRef = this.modalService.show(template, {class: 'modal-xl'});
   }
+  moveDescriptionUp(index: number) {
+    if (index <= 0){
+      return;
+    }
+    let indexUp = index - 1;
+    let item = this.descriptionItems[index];
+    let itemUp = this.descriptionItems[indexUp];
+    this.descriptionItems[indexUp] = item;
+    this.descriptionItems[index] = itemUp;
+  }
+  moveDescriptionDown(index: number) {
+    let indexDown = index + 1;
+    if (indexDown >= this.descriptionItems.length){
+      return;
+    }
+    let item = this.descriptionItems[index];
+    let itemDown = this.descriptionItems[indexDown];
+    this.descriptionItems[indexDown] = item;
+    this.descriptionItems[index] = itemDown;
+  }
 }
