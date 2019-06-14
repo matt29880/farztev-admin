@@ -8,4 +8,6 @@ export class Article {
   created: string;
   updated: string;
   online: boolean;
+  thumbnailId: number;
+  thumbnailUrl: string;
 }

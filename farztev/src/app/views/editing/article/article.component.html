@@ -22,6 +22,14 @@
 		<input type="text" name="articleName" [(ngModel)]="article.name" class="form-control" required #name="ngModel"/>
 		<span class="help-block" *ngIf="!name.valid && name.touched">Please enter an article name !</span>
 	</div>
+	<div class="form-group row">
+		Thumbnail :
+		<button class="btn btn-secondary" type="button" (click)="openModalThumbnail(template)">Update thumbnail</button>
+
+		<p *ngIf="article.thumbnailId != null">
+			<img src="http://localhost:8080/api/image{{article.thumbnailUrl}}?width=250&height=250">
+		</p>
+	</div>
 	<div class="form-group">
 		<label>Description:</label>
 		<div *ngFor="let articleDescription of descriptionItems; let index = index">
@@ -39,7 +47,7 @@
 						<option *ngFor="let album of albums" [ngValue]="album.id">{{album.name}}</option>
 					</select>
 					<p *ngIf="articleDescription.type == 'photo'">
-						<img src="http://localhost:8080/api/image{{articleDescription.url}}" width="300">
+						<img src="http://localhost:8080/api/image{{articleDescription.url}}?width=250&height=250">
 					</p>
 				</div>
 				<div class="col-sm-2">
@@ -64,6 +72,6 @@
 	  </button>
 	</div>
 	<div class="modal-body">
-		<farztev-explorer (selectedFiles)="addArticlePhoto($event)"></farztev-explorer>
+		<farztev-explorer (selectedFiles)="setPhoto($event)"></farztev-explorer>
 	</div>
   </ng-template>

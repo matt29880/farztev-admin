@@ -40,6 +40,7 @@ export class ArticleComponent implements OnInit {
   countries: ListCountry[];
   @ViewChild('f') form: NgForm;
   albums: ListAlbum[] = [];
+  modalType: string;
 
   ngOnInit() {
     this.initializeEmptyArticle();
@@ -111,11 +112,12 @@ export class ArticleComponent implements OnInit {
         this.descriptionItems.push(descriptionItem);
       });
     } else if (type == 'photo') {
-      this.openModal(template);
+      this.openModal(template, 'photo');
     }
   }
 
-  addArticlePhoto(filePath : string) : void {
+  setPhoto(filePath : string) : void {
+    this.modalRef.hide();
     let media = new Media();
     media.name = "";
     let mediaTypeId = MediaType[MediaType.PHOTO];
@@ -124,13 +126,19 @@ export class ArticleComponent implements OnInit {
     media.url = filePath;
     media.albumId = null;
     this.mediaService.insertMedia(media).subscribe(media => {
-      console.log("MEDIA ADDED ! " + media);
+      console.log("MEDIA ADDED ! " + media + " - type : " + this.modalType);
 
-      let articlePhoto = new ArticlePhoto();
-      articlePhoto.id = media.id;
-      articlePhoto.url = media.url;
-      console.log(articlePhoto);
-      this.descriptionItems.push(articlePhoto);
+      if (this.modalType == 'photo') {
+        let articlePhoto = new ArticlePhoto();
+        articlePhoto.id = media.id;
+        articlePhoto.url = media.url;
+        console.log(articlePhoto);
+        this.descriptionItems.push(articlePhoto);
+      } else if (this.modalType == 'thumbnail') {
+        this.article.thumbnailId = media.id;
+        this.article.thumbnailUrl = media.url;
+      }
+
     });
   }
 
@@ -138,7 +146,12 @@ export class ArticleComponent implements OnInit {
     this.descriptionItems.splice(index, 1);
   }
   
-  openModal(template: TemplateRef<any>) {
+  openModalThumbnail(template: TemplateRef<any>) {
+    this.openModal(template, 'thumbnail');
+  }
+  
+  openModal(template: TemplateRef<any>, modalType: string) {
+    this.modalType = modalType;
     this.modalRef = this.modalService.show(template, {class: 'modal-xl'});
   }
 }

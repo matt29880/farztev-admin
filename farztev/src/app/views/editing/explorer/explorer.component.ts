@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { EventEmitter, Input, Output } from '@angular/core';
+import { EventEmitter, Output } from '@angular/core';
 import { FileDetailDto } from './fileDetailDto';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
