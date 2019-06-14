@@ -17,6 +17,7 @@ const httpOptions = {
 })
 export class MediaService {
   private albumsUrl = environment.backendBaseUrl + '/api/album/';
+  private mediasUrl = environment.backendBaseUrl + '/api/media/';
 
   constructor(private http: HttpClient) {}
 
@@ -28,17 +29,17 @@ export class MediaService {
     );
   }
 
-  insertMedia(albumId: number, media: Media): Observable<Media> {
+  insertMedia(media: Media): Observable<Media> {
     console.log("Try to insert a media");
     console.log(media);
-    return this.http.post<Media>(this.albumsUrl + albumId+ "/media", media, httpOptions).pipe(
+    return this.http.post<Media>(this.mediasUrl , media, httpOptions).pipe(
       tap(media => this.log('inserted media'))
     );
   }
 
-  deleteMedia(albumId: number, id: number): Observable<void> {
-    console.log("Try to delete the media - id = "+id + " - album id = "+albumId);
-    return this.http.delete<void>(this.albumsUrl+ albumId+ "/media/" + id, httpOptions).pipe(
+  deleteMedia(id: number): Observable<void> {
+    console.log("Try to delete the media - id = "+id + " - album id = "+id);
+    return this.http.delete<void>(this.mediasUrl + "/" + id, httpOptions).pipe(
       tap(media => this.log('deleted media'))
     );
   }

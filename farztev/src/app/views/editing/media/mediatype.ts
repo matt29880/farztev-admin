@@ -1,3 +1,3 @@
 export enum MediaType {
-    PHOTO, VIDEO, THUMBNAIL
+    PHOTO, VIDEO, THUMBNAIL, ARTICLE_PHOTO
 }

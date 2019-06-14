@@ -112,7 +112,7 @@ export class AlbumComponent implements OnInit{
     media.online = true;
     media.url = filePath;
     media.albumId = this.albumId;
-    this.mediaService.insertMedia(this.albumId, media).subscribe(media => this.medias.push(media));
+    this.mediaService.insertMedia(media).subscribe(media => this.medias.push(media));
   }
 
   selectionExists(filePath) : boolean {
@@ -121,12 +121,13 @@ export class AlbumComponent implements OnInit{
 
   unselect(id : number):void {
     // Remove item by filtering
-    this.mediaService.deleteMedia(this.albumId, id).subscribe(() => {
+    this.mediaService.deleteMedia(id).subscribe(() => {
       this.medias = this.medias.filter(function(media){
         return id != media.id;
       });
     });
   }
+
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {class: 'modal-xl'});
   }
