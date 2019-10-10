@@ -9,6 +9,7 @@ import { AlbumsComponent } from './albums/albums.component';
 import { AlbumComponent } from './album/album.component';
 import { AlbumTypesComponent } from './albumtypes/albumtypes.component';
 import { AlbumTypeComponent } from './albumtype/albumtype.component';
+import { TripsComponent } from './trips/trips.component';
 
 const routes: Routes = [
   {
@@ -99,6 +100,13 @@ const routes: Routes = [
         component: AlbumTypeComponent,
         data: {
           title: 'Album Type'
+        }
+      },
+      {
+        path: 'trips',
+        component: TripsComponent,
+        data: {
+          title: 'Trips'
         }
       }
     ]
