@@ -1,18 +1,27 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, TemplateRef } from '@angular/core';
 import { TripsService } from '../trips/trips.service';
 import { Trip } from './trip';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Router } from "@angular/router";
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Media } from '../media/media';
+import { MediaType } from '../media/mediatype';
+import { MediaService } from '../media/media.service';
 
 @Component({
   templateUrl: 'trip.component.html',
   styleUrls: ['trip.component.css']
 })
 export class TripComponent implements OnInit {
+  modalRef: BsModalRef;
 
-  constructor(public tripsService: TripsService, private route: ActivatedRoute, private router: Router) {
+  constructor(public tripsService: TripsService, 
+    private route: ActivatedRoute, 
+    private router: Router,
+    public mediaService: MediaService,
+    private modalService: BsModalService) {
   }
   dataAvailable = false;
   tripId: number;
@@ -55,4 +64,24 @@ export class TripComponent implements OnInit {
       this.tripsService.updateTrip(this.tripId, this.trip).subscribe(response => {console.log("Trip updated !");this.router.navigate(['trips'], {relativeTo: this.route.parent});});
     }
   } 
+
+  setPhoto(filePath : string) : void {
+    this.modalRef.hide();
+    let media = new Media();
+    media.name = "";
+    let mediaTypeId = MediaType[MediaType.PHOTO];
+    media.type = mediaTypeId;
+    media.online = true;
+    media.url = filePath;
+    media.albumId = null;
+    this.mediaService.insertMedia(media).subscribe(media => {
+      console.log("Thumbnail added ! " + media);
+      this.trip.thumbnailId = media.id;
+      this.trip.thumbnailUrl = media.url;
+    });
+  }
+  
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-xl'});
+  }
 }

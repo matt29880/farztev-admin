@@ -3,11 +3,13 @@ import {Trip} from '../trip/trip';
 import {TripsService} from './trips.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
+
 @Component({
   templateUrl: 'trips.component.html'
 })
 export class TripsComponent implements OnInit, OnDestroy {
-  constructor(public tripsService: TripsService, private router: Router) {
+  constructor(public tripsService: TripsService, 
+    private router: Router) {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.ngOnInit();

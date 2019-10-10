@@ -1,9 +1,10 @@
 export class Trip {
   id: number;
   name: string;
-  summary: string;
+  summary: number;
   start: Date;
   end: Date;
-  thumbnail: number;
+  thumbnailId: number;
+  thumbnailUrl: string;
   online: boolean;
 }

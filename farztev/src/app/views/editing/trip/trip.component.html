@@ -7,6 +7,14 @@
          	</label>
 	</div>
 
+	<div class="form-group row">
+		Thumbnail :
+		<button class="btn btn-secondary" type="button" (click)="openModal(template)">Update thumbnail</button>
+
+		<p *ngIf="trip.thumbnailId != null">
+			<img src="http://localhost:8080/api/image{{trip.thumbnailUrl}}?width=250&height=250">
+		</p>
+	</div>
 	<div class="form-group">
 		<label>Name:</label> 
 		<input type="text" name="tripName" [(ngModel)]="trip.name" class="form-control" required #name="ngModel"/>
@@ -27,3 +35,14 @@
 	<button class="btn btn-primary" type="submit" [disabled]="!form.valid">Save the trip</button>
 	<button class="btn btn-danger" type="button" [disabled]="trip.id==null" (click)="deleteTrip()">Delete the trip</button>
 </form>
+<ng-template #template>
+	<div class="modal-header">
+	  <h4 class="modal-title pull-left">Modal</h4>
+	  <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+		<span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+	<div class="modal-body">
+		<farztev-explorer (selectedFiles)="setPhoto($event)"></farztev-explorer>
+	</div>
+  </ng-template>
