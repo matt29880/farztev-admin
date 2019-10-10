@@ -18,6 +18,7 @@ import { AlbumTypesComponent } from './albumtypes/albumtypes.component';
 import { AlbumTypeComponent } from './albumtype/albumtype.component';
 
 import { TripsComponent } from './trips/trips.component';
+import { TripComponent } from './trip/trip.component';
 
 // Components Routing
 import { EditingRoutingModule } from './editing-routing.module';
@@ -38,7 +39,8 @@ import { EditingRoutingModule } from './editing-routing.module';
     AlbumTypesComponent,
     AlbumTypeComponent,
     ExplorerComponent,
-    TripsComponent
+    TripsComponent,
+    TripComponent
   ]
 })
 export class EditingModule { }

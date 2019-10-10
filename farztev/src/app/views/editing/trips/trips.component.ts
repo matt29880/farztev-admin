@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Trip} from './trip';
+import {Trip} from '../trip/trip';
 import {TripsService} from './trips.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 

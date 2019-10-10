@@ -3,13 +3,18 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
+
 import { CountriesComponent } from './countries/countries.component';
 import { CountryComponent } from './country/country.component';
+
 import { AlbumsComponent } from './albums/albums.component';
 import { AlbumComponent } from './album/album.component';
+
 import { AlbumTypesComponent } from './albumtypes/albumtypes.component';
 import { AlbumTypeComponent } from './albumtype/albumtype.component';
+
 import { TripsComponent } from './trips/trips.component';
+import { TripComponent } from './trip/trip.component';
 
 const routes: Routes = [
   {
@@ -107,6 +112,20 @@ const routes: Routes = [
         component: TripsComponent,
         data: {
           title: 'Trips'
+        }
+      },
+      {
+        path: 'trips/:id',
+        component: TripComponent,
+        data: {
+          title: 'Trip'
+        }
+      },
+      {
+        path: 'trips/new',
+        component: TripComponent,
+        data: {
+          title: 'Trip'
         }
       }
     ]

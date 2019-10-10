@@ -3,7 +3,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {environment} from '../../../../environments/environment';
-import {Trip} from './trip';
+import {Trip} from '../trip/trip';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 
