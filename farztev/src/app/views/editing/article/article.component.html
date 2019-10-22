@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+<form (ngSubmit)="onSubmit()" #f="ngForm">
 	<div>
 		<p>Created : {{article.created}}</p>
 		<p>Updated : {{article.updated}}</p>
@@ -57,9 +57,9 @@
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-secondary" type="button" (click)="addDescriptionItem('title')">Add title</button>
-		<button class="btn btn-secondary" type="button" (click)="addDescriptionItem('paragraph')">Add paragraph</button>
-		<button class="btn btn-secondary" type="button" (click)="addDescriptionItem('album')">Add album</button>
+		<button class="btn btn-secondary" type="button" (click)="addDescriptionItem('title', template)">Add title</button>
+		<button class="btn btn-secondary" type="button" (click)="addDescriptionItem('paragraph', template)">Add paragraph</button>
+		<button class="btn btn-secondary" type="button" (click)="addDescriptionItem('album', template)">Add album</button>
 		<button class="btn btn-secondary" type="button" (click)="addDescriptionItem('photo', template)">Add photo</button>
 	</div>
 	<button class="btn btn-primary" type="submit" [disabled]="!form.valid">Save the article</button>

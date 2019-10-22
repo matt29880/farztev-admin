@@ -3,4 +3,5 @@ export class Country {
   name: string;
   description: string;
   online: boolean;
+  continent: string;
 }
