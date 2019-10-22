@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendBaseUrl : "http://localhost:8080"
+  backendBaseUrl : "http://greenbox:8081"
 };
