@@ -14,9 +14,9 @@
 	<div class="col-9 files" style="height: 100%;overflow-x:auto;">
 		<div class="row text-center text-lg-left">
 			<div class="col-3 file" *ngFor="let file of photos()">
-				<img src="http://localhost:8080/api/image{{file.path}}?width=150&height=150"
+				<img src="http://test.farzteo.com/images/{{file.path}}"
 					(click)="selectImage(file);"
-					class="rounded img-thumbnail cursor-pointer overlay" />
+					class="rounded img-thumbnail cursor-pointer overlay" width="150" height="150"/>
 					<div class="middle">
 					  	<div class="text" (click)="selectImage(file);" style="width:40px;">
 						  <img src="/assets/img/add.png" width="1" height="1"/>
