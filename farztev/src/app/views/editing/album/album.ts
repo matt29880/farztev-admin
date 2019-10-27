@@ -9,4 +9,6 @@ export class Album {
   created: string;
   updated: string;
   online: boolean;
+  thumbnailId: number;
+  thumbnailUrl: string;
 }

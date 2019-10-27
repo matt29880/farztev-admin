@@ -13,6 +13,14 @@
            	<span class="switch-slider"></span>
          	</label>
 	</div>
+	<div class="form-group row">
+		Thumbnail :
+		<button class="btn btn-secondary" type="button" (click)="openModalThumbnail(template)">Update thumbnail</button>
+
+		<p *ngIf="album.thumbnailId != null">
+			<img src="http://test.farzteo.com/images/{{album.thumbnailUrl}}" width="250" height="250">
+		</p>
+	</div>
 	<div class="form-group">
 		<label for="country" class="col-sm-2 col-form-label">Country:</label> 
 		<select id="country" [(ngModel)]="album.countryId" name="countryId" class="form-control" required>
@@ -34,7 +42,7 @@
 	<button class="btn btn-danger" type="button" [disabled]="album.id==null" (click)="deleteAlbum()">Delete the album</button>
 </form>
 
-<button type="button" class="btn btn-primary" (click)="openModal(template)">Add photos</button>
+<button type="button" class="btn btn-primary" (click)="openModalPhoto(template)">Add photos</button>
 <div class="album row text-center text-lg-left">
   <div class="col-lg-3 col-md-4 col-6" *ngFor="let media of medias">
 				<img src="http://test.farzteo.com/images/{{media.url}}" width="250" height="250" 

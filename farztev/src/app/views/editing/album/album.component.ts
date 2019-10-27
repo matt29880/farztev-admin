@@ -38,6 +38,7 @@ export class AlbumComponent implements OnInit{
   album: Album;
   medias: Media[];
   countries: ListCountry[];
+  modalType: MediaType;
 
   @ViewChild('f') form: NgForm;
 
@@ -98,21 +99,32 @@ export class AlbumComponent implements OnInit{
   }
 
   addSelection(filePath : string) : void {
-    if(this.selectionExists(filePath)) {
-      this.alertState = "show";
-      setTimeout(() => {
-        this.alertState = "hide";
-      }, 2000);
-      return;
+    if (this.modalType == MediaType.PHOTO) {
+      if(this.selectionExists(filePath)) {
+        this.alertState = "show";
+        setTimeout(() => {
+          this.alertState = "hide";
+        }, 2000);
+        return;
+      }
     }
+
     let media = new Media();
     media.name = "";
-    let mediaTypeId = MediaType[MediaType.PHOTO];
+    let mediaTypeId = MediaType[this.modalType];
     media.type = mediaTypeId;
     media.online = true;
     media.url = filePath;
     media.albumId = this.albumId;
-    this.mediaService.insertMedia(media).subscribe(media => this.medias.push(media));
+    this.mediaService.insertMedia(media).subscribe(media => {
+
+      if (this.modalType == MediaType.PHOTO) {
+        this.medias.push(media);
+      } else if (this.modalType == MediaType.THUMBNAIL) {
+        this.album.thumbnailId = media.id;
+        this.album.thumbnailUrl = media.url;
+      }
+    });
   }
 
   selectionExists(filePath) : boolean {
@@ -127,9 +139,19 @@ export class AlbumComponent implements OnInit{
       });
     });
   }
+  
+  openModalPhoto(template: TemplateRef<any>) {
+    this.openModal(template, MediaType.PHOTO);
+  }
+  
+  openModalThumbnail(template: TemplateRef<any>) {
+    this.openModal(template, MediaType.THUMBNAIL);
+  }
 
-  openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<any>, modalType: MediaType) {
+    this.modalType = modalType;
     this.modalRef = this.modalService.show(template, {class: 'modal-xl'});
   }
+  
 
 }
