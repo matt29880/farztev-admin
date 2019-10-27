@@ -46,12 +46,13 @@
 	<button class="btn btn-secondary" type="button" (click)="addArticle(selectedArticle)">+</button>
 </p>
 <p>
-		Add albums :
-	<select>
-		<option *ngFor="let album of availableAlbums;" value="{{album.id}}">
+	Add albums :
+	<select [(ngModel)]="selectedAlbum">
+		<option *ngFor="let album of availableAlbums;" [ngValue]="album.id">
 			{{album.name}}
 		</option>
 	</select>
+	<button class="btn btn-secondary" type="button" (click)="addAlbum(selectedAlbum)">+</button>
 </p>
 
 <p>
@@ -60,6 +61,15 @@
 <ul>
 	<li *ngFor="let article of tripArticles;">
 				{{article.name}}
+	</li>
+</ul>
+
+<p>
+	Albums of the trip :
+</p>
+<ul>
+	<li *ngFor="let album of tripAlbums;">
+				{{album.name}}
 	</li>
 </ul>
 

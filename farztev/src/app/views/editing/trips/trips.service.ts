@@ -7,6 +7,7 @@ import {Trip} from '../trip/trip';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import { Article } from '../article/article';
+import { Album } from '../album/album';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -18,6 +19,7 @@ const httpOptions = {
 export class TripsService {
   private tripsUrls = environment.backendBaseUrl + '/api/trip';
   private tripArticlesUrls = environment.backendBaseUrl + '/api/triparticle';
+  private tripAlbumsUrls = environment.backendBaseUrl + '/api/tripalbum';
 
   constructor(private http: HttpClient) {}
 
@@ -65,12 +67,22 @@ export class TripsService {
   }
 
   addTripArticle(tripId : number, articleId : number): Observable<Object> {
-    console.log("2 - addTripArticle " + articleId);
-    /*return this.http.post<Article[]>(this.tripArticlesUrls + "/" + tripId + "/" + articleId, httpOptions).pipe(
-      tap(articles => this.log('add article '+ articleId + ' to trip ' + tripId)),
-      catchError(this.handleError('addTripArticle', []))
-    );*/
+    console.log("addTripArticle " + articleId);
     return this.http.post(this.tripArticlesUrls + "/" + tripId + "/" + articleId, null).pipe(
+      tap(res => res)
+    );
+  }
+
+  getTripAlbums(tripId : number): Observable<Album[]> {
+    return this.http.get<Album[]>(this.tripAlbumsUrls + "/" + tripId).pipe(
+      tap(albums => this.log('fetched albums of trip ' + tripId)),
+      catchError(this.handleError('getTripAlbums', []))
+    );
+  }
+
+  addTripAlbum(tripId : number, albumId : number): Observable<Object> {
+    console.log("addTripAlbum " + albumId);
+    return this.http.post(this.tripAlbumsUrls + "/" + tripId + "/" + albumId, null).pipe(
       tap(res => res)
     );
   }

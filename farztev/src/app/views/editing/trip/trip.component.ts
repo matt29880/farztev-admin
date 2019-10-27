@@ -36,7 +36,9 @@ export class TripComponent implements OnInit {
   availableArticles: ListArticle[];
   availableAlbums: ListAlbum[];
   tripArticles: Article[];
+  tripAlbums: Article[];
   selectedArticle: number;
+  selectedAlbum: number;
   @ViewChild('f') form: NgForm;
 
   ngOnInit() {
@@ -53,6 +55,7 @@ export class TripComponent implements OnInit {
     this.articlesService.getArticles().subscribe(articles => { this.availableArticles = articles;});
     this.tripsService.getTripArticles(this.tripId).subscribe(articles => { this.tripArticles = articles;});
     this.albumsService.getAlbums().subscribe(albums => { this.availableAlbums = albums;});
+    this.tripsService.getTripAlbums(this.tripId).subscribe(albums => { this.tripAlbums = albums;});
   }
 
   initializeEmptyArticle() {
@@ -102,6 +105,12 @@ export class TripComponent implements OnInit {
   addArticle(selectedArticle : number) {
     console.log("Add selectedArticle " + selectedArticle);
     this.tripsService.addTripArticle(this.tripId, selectedArticle)
+        .subscribe(res => { console.log("Added !!")});
+  }
+
+  addAlbum(selectedAlbum : number) {
+    console.log("Add selectedAlbum " + selectedAlbum);
+    this.tripsService.addTripAlbum(this.tripId, selectedAlbum)
         .subscribe(res => { console.log("Added !!")});
   }
 }
