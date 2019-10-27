@@ -35,6 +35,34 @@
 	<button class="btn btn-primary" type="submit" [disabled]="!form.valid">Save the trip</button>
 	<button class="btn btn-danger" type="button" [disabled]="trip.id==null" (click)="deleteTrip()">Delete the trip</button>
 </form>
+
+<p>
+	Add Articles : 
+	<select [(ngModel)]="selectedArticle">
+		<option *ngFor="let article of availableArticles;" [ngValue]="article.id">
+			{{article.name}}
+		</option>
+	</select>
+	<button class="btn btn-secondary" type="button" (click)="addArticle(selectedArticle)">+</button>
+</p>
+<p>
+		Add albums :
+	<select>
+		<option *ngFor="let album of availableAlbums;" value="{{album.id}}">
+			{{album.name}}
+		</option>
+	</select>
+</p>
+
+<p>
+	Articles of the trip :
+</p>
+<ul>
+	<li *ngFor="let article of tripArticles;">
+				{{article.name}}
+	</li>
+</ul>
+
 <ng-template #template>
 	<div class="modal-header">
 	  <h4 class="modal-title pull-left">Modal</h4>

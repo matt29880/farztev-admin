@@ -6,6 +6,7 @@ import {environment} from '../../../../environments/environment';
 import {Trip} from '../trip/trip';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
+import { Article } from '../article/article';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -16,6 +17,7 @@ const httpOptions = {
 })
 export class TripsService {
   private tripsUrls = environment.backendBaseUrl + '/api/trip';
+  private tripArticlesUrls = environment.backendBaseUrl + '/api/triparticle';
 
   constructor(private http: HttpClient) {}
 
@@ -52,6 +54,24 @@ export class TripsService {
     console.log("Try to delete the trip - id = "+id);
     return this.http.delete<void>(this.tripsUrls + "/" + id, httpOptions).pipe(
       tap(trip => this.log('deleted trip'))
+    );
+  }
+
+  getTripArticles(tripId : number): Observable<Article[]> {
+    return this.http.get<Article[]>(this.tripArticlesUrls + "/" + tripId).pipe(
+      tap(articles => this.log('fetched articles of trip ' + tripId)),
+      catchError(this.handleError('getTripArticles', []))
+    );
+  }
+
+  addTripArticle(tripId : number, articleId : number): Observable<Object> {
+    console.log("2 - addTripArticle " + articleId);
+    /*return this.http.post<Article[]>(this.tripArticlesUrls + "/" + tripId + "/" + articleId, httpOptions).pipe(
+      tap(articles => this.log('add article '+ articleId + ' to trip ' + tripId)),
+      catchError(this.handleError('addTripArticle', []))
+    );*/
+    return this.http.post(this.tripArticlesUrls + "/" + tripId + "/" + articleId, null).pipe(
+      tap(res => res)
     );
   }
 

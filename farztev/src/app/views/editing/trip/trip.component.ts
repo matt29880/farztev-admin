@@ -9,6 +9,11 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Media } from '../media/media';
 import { MediaType } from '../media/mediatype';
 import { MediaService } from '../media/media.service';
+import { ArticlesService } from '../articles/articles.service';
+import { AlbumsService } from '../albums/albums.service';
+import { ListArticle } from '../articles/listarticle';
+import { ListAlbum } from '../albums/listalbum';
+import { Article } from '../article/article';
 
 @Component({
   templateUrl: 'trip.component.html',
@@ -21,11 +26,17 @@ export class TripComponent implements OnInit {
     private route: ActivatedRoute, 
     private router: Router,
     public mediaService: MediaService,
+    public articlesService: ArticlesService,
+    public albumsService: AlbumsService,
     private modalService: BsModalService) {
   }
   dataAvailable = false;
   tripId: number;
   trip: Trip;
+  availableArticles: ListArticle[];
+  availableAlbums: ListAlbum[];
+  tripArticles: Article[];
+  selectedArticle: number;
   @ViewChild('f') form: NgForm;
 
   ngOnInit() {
@@ -39,6 +50,9 @@ export class TripComponent implements OnInit {
     if (this.tripId != null) {
       this.getTrip().subscribe(trip => { this.trip = trip;this.dataAvailable = true; });
     }
+    this.articlesService.getArticles().subscribe(articles => { this.availableArticles = articles;});
+    this.tripsService.getTripArticles(this.tripId).subscribe(articles => { this.tripArticles = articles;});
+    this.albumsService.getAlbums().subscribe(albums => { this.availableAlbums = albums;});
   }
 
   initializeEmptyArticle() {
@@ -83,5 +97,11 @@ export class TripComponent implements OnInit {
   
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {class: 'modal-xl'});
+  }
+
+  addArticle(selectedArticle : number) {
+    console.log("Add selectedArticle " + selectedArticle);
+    this.tripsService.addTripArticle(this.tripId, selectedArticle)
+        .subscribe(res => { console.log("Added !!")});
   }
 }
