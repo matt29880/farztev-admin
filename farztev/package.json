@@ -50,7 +50,7 @@
     "ng2-charts": "^1.6.0",
     "ngx-bootstrap": "^3.0.1",
     "ngx-perfect-scrollbar": "^6.3.0",
-    "npm": "^6.4.1",
+    "npm": "^6.12.1",
     "rxjs": "^6.3.0",
     "rxjs-compat": "^6.3.0",
     "simple-line-icons": "^2.4.1",
@@ -58,7 +58,7 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.7.5",
+    "@angular-devkit/build-angular": "^0.803.17",
     "@angular/cli": "^6.1.5",
     "@angular/compiler-cli": "^6.1.6",
     "@angular/language-service": "^6.1.6",
