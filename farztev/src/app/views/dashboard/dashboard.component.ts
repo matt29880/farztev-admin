@@ -12,6 +12,7 @@ export class DashboardComponent {
 
   constructor(public publishService: PublishService) { }
 
+  publishType = PublishType;
   published : boolean = false;
 
   publish(publishType : PublishType) {
