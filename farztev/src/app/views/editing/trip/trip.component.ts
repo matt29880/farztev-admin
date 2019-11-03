@@ -14,6 +14,7 @@ import { AlbumsService } from '../albums/albums.service';
 import { ListArticle } from '../articles/listarticle';
 import { ListAlbum } from '../albums/listalbum';
 import { Article } from '../article/article';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   templateUrl: 'trip.component.html',
@@ -21,6 +22,7 @@ import { Article } from '../article/article';
 })
 export class TripComponent implements OnInit {
   modalRef: BsModalRef;
+  private environment = environment;
 
   constructor(public tripsService: TripsService, 
     private route: ActivatedRoute, 

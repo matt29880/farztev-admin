@@ -1,5 +1,6 @@
 # base image
 FROM node:10.12.0
+ARG environment=integration
 
 # install chrome for protractor tests
 #RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -22,4 +23,4 @@ RUN npm install -g @angular/cli@6.2.9
 COPY . /usr/src/app
 
 # start app
-CMD ng serve --host 0.0.0.0 --disable-host-check -c production
+CMD ng serve --host 0.0.0.0 --disable-host-check -c environment

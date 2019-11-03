@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Router } from "@angular/router";
 import {ExplorerService} from './explorer.service';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'farztev-explorer',
@@ -13,6 +14,7 @@ import {ExplorerService} from './explorer.service';
   styleUrls: ['explorer.component.css']
 })
 export class ExplorerComponent implements OnInit {
+  private environment = environment;
 
   constructor(public explorerService: ExplorerService) {
   }

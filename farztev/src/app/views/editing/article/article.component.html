@@ -27,7 +27,7 @@
 		<button class="btn btn-secondary" type="button" (click)="openModalThumbnail(template)">Update thumbnail</button>
 
 		<p *ngIf="article.thumbnailId != null">
-			<img src="http://test.farzteo.com/images/{{article.thumbnailUrl}}" width="250" height="250">
+			<img src="{{environment.siteUrl}}/images/{{article.thumbnailUrl}}" width="250" height="250">
 		</p>
 	</div>
 	<div class="form-group">
@@ -47,7 +47,7 @@
 						<option *ngFor="let album of albums" [ngValue]="album.id">{{album.name}}</option>
 					</select>
 					<p *ngIf="articleDescription.type == 'photo'">
-						<img src="http://test.farzteo.com/images/{{articleDescription.url}}" width="250" height="250">
+						<img src="{{environment.siteUrl}}/images/{{articleDescription.url}}" width="250" height="250">
 					</p>
 				</div>
 				<div class="col-sm-2">

@@ -12,6 +12,7 @@ import { MediaType } from '../media/mediatype';
 import { ListAlbum } from '../albums/listalbum';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   templateUrl: 'album.component.html',
@@ -19,6 +20,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AlbumComponent implements OnInit{
   modalRef: BsModalRef;
+  private environment = environment;
   constructor(public albumsService: AlbumsService, 
     public countriesService: CountriesService, 
     public mediaService: MediaService, 

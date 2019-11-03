@@ -18,6 +18,7 @@ import { Media } from '../media/media';
 import { MediaType } from '../media/mediatype';
 import { MediaService } from '../media/media.service';
 import { ArticlePhoto } from './articlePhoto';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   templateUrl: 'article.component.html',
@@ -25,6 +26,7 @@ import { ArticlePhoto } from './articlePhoto';
 })
 export class ArticleComponent implements OnInit {
   modalRef: BsModalRef;
+  private environment = environment;
   constructor(public articlesService: ArticlesService, 
     public countriesService: CountriesService, 
     public albumsService: AlbumsService, 

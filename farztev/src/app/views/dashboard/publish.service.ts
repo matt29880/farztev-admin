@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable, of} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
+import { PublishType } from './publishType';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -18,9 +19,9 @@ export class PublishService {
 
   constructor(private http: HttpClient) {}
 
-  publish(): Observable<Object> {
+  publish(publishType : PublishType): Observable<Object> {
     console.log("Start publishing");
-    return this.http.get(this.publishUrl).pipe(
+    return this.http.get(this.publishUrl + '/' + publishType).pipe(
       tap(res => res)
     );
   }
