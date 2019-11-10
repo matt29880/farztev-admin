@@ -36,7 +36,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'editing',
-        loadChildren: './views/editing/editing.module#EditingModule'
+        loadChildren: () => import('./views/editing/editing.module').then(m => m.EditingModule)
       }
     ]
   },
@@ -49,7 +49,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadChildren: './views/dashboard/dashboard.module#DashboardModule'
+        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       }
     ]
   }
